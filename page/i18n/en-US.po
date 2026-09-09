@@ -1,0 +1,9 @@
+
+msgid "appName"
+msgstr "Kamerton"
+
+msgid "version"
+msgstr "ver. 1.0.0"
+
+msgid "creator"
+msgstr "This app is created by chebishev"
