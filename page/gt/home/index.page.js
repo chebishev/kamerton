@@ -5,24 +5,33 @@ import { log as Logger } from "@zos/utils";
 import { BACKGROUND, INFO_ICON } from "zosLoader:./index.page.[pf].layout.js";
 
 const logger = Logger.getLogger("kamerton");
+// flag for start/stop the playing on tap
+let soundPlaying = false;
+let player = null;
+
 Page({
   onInit() {
     logger.debug("page onInit invoked");
   },
   build() {
-    // flag for start/stop the playing on tap
-    let soundPlaying = false;
+    
     logger.debug("page build invoked");
     // Show the background image
     const background = createWidget(widget.IMG, BACKGROUND);
     // Create audio player
-    const player = create(id.PLAYER)
+    player = create(id.PLAYER)
     // Listen for prepare() function
     player.addEventListener(player.event.PREPARE, (result) => {
-      if (result) player.start()
+      if (result) {
+        player.start()
+      } else {
+        soundPlaying = false;
+        logger.error("failed to prepare audio");
+      }
     });
     player.addEventListener(player.event.COMPLETE, () => {
       player.stop()
+      soundPlaying = false
     });
     // media file source (duration 1:20 min)
     player.setSource(player.source.FILE, { file: "assets://raw/media/A-440Hz.mp3" })
@@ -49,6 +58,9 @@ Page({
     });
   },
   onDestroy() {
+    if (player) {
+      player.stop()
+    }
     logger.debug("page onDestroy invoked");
   },
 });

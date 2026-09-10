@@ -10,7 +10,7 @@
     },
     "icon": "icon.png",
     "vender": "chebishev",
-    "description": "Get A 440Hz"
+    "description": "Tuning fork 440Hz sound"
   },
   "permissions": [
     "data:os.device.info",
