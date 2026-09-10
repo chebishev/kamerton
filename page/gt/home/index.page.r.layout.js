@@ -5,13 +5,13 @@ export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();
 const infoPosition = DEVICE_WIDTH / 2 - 20
 
 export const BACKGROUND = {
-  src: "kamerton.png",
-  x: px(0),
-  y: px(0),
+  src: "kamerton524.png",
+  x: px(-21),
+  y: px(-21),
 };
 
 export const INFO_ICON = {
   src: "info.png",
   x: px(infoPosition),
-  y: px(20),
+  y: px(10),
 }

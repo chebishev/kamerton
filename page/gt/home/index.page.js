@@ -1,8 +1,7 @@
 import { createWidget, widget, event } from "@zos/ui";
 import { push } from "@zos/router";
 import { log as Logger } from "@zos/utils";
-import { BACKGROUND } from "zosLoader:./index.page.[pf].layout.js";
-import { INFO_ICON } from "./index.page.r.layout";
+import { BACKGROUND, INFO_ICON } from "zosLoader:./index.page.[pf].layout.js";
 
 const logger = Logger.getLogger("kamerton");
 Page({
