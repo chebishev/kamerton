@@ -29,7 +29,7 @@ export const CREATOR_INFO = {
 };
 
 export const QRCODE = {
-      content: 'Hello Zepp OS',
+      content: 'https://chebishev.github.io/',
       x: px(140),
       y: px(200),
       w: px(200),
