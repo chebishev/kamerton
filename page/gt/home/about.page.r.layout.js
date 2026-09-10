@@ -6,7 +6,7 @@ export const APP_INFO = {
     x: px(96),
     y: px(60),
     w: px(288),
-    h: px(46),
+    h: px(50),
     color: 0xffffff,
     text_size: px(22),
     align_h: align.CENTER_H,
