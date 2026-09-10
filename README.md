@@ -20,15 +20,13 @@ Plays real, progressively fading out "A" note 440Hz
 
 ## Project structure
 .
-├── app.js        # JS скрипт с Playwright
-├── page/               # Директория с извлечени конфигурации
-│   └── gt/         # Създава се нова папка на всяка дата
-│   └── i18n/         # Създава се нова папка на всяка дата
-├── assets/               # Директория с извлечени конфигурации
-│   └── gt.r/         # Създава се нова папка на всяка дата
-│   └── gt.s/         # Създава се нова папка на всяка дата
-│   └── raw/         # Създава се нова папка на всяка дата
-
+├── page/             # Директория с извлечени конфигурации
+│   └── gt/home       # Contains the pages index.page.js and about.js, and layouts (round/square) for them
+│   └── i18n/         # en_US.po file with info strings (title, version, author)
+├── assets/           # Media files
+    └── gt.r/         # icons and pictures for Round devices
+    └── gt.s/         # icons and pictures for Square devices
+    └── raw/media     # sound files (in this case - sound file)
 
 ## License
 [MIT](LICENSE)
