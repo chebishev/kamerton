@@ -18,5 +18,5 @@ export const BACKGROUND = {
 export const INFO_ICON = {
   src: "info.png",
   x: px(infoPosition),
-  y: px(50),
+  y: px(40),
 };
