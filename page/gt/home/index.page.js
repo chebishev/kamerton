@@ -19,19 +19,19 @@ Page({
     // Show the background image
     const background = createWidget(widget.IMG, BACKGROUND);
     // Create audio player
-    player = create(id.PLAYER)
+    player = create(id.PLAYER);
     // Listen for prepare() function
     player.addEventListener(player.event.PREPARE, (result) => {
       if (result) {
-        player.start()
+        player.start();
       } else {
         soundPlaying = false;
         logger.error("failed to prepare audio");
       }
     });
     player.addEventListener(player.event.COMPLETE, () => {
-      player.stop()
-      soundPlaying = false
+      player.stop();
+      soundPlaying = false;
     });
     // media file source (duration 1:20 min)
     player.setSource(player.source.FILE, { file: "assets://raw/media/A-440Hz.mp3" })
@@ -39,14 +39,13 @@ Page({
     // tap the background to start/stop sound playing
     background.addEventListener(event.CLICK_UP, () => {
       if (!soundPlaying) {
-        player.prepare()
+        player.prepare();
         soundPlaying = true;
-        logger.info("playing sound....")
-      }
-      else {
+        logger.info("playing sound....");
+      } else {
         player.stop()
         soundPlaying = false;
-        logger.info("sound stopped")
+        logger.info("sound stopped");
       }
     });
     // create and show clickable info image leading to about.js
@@ -59,7 +58,7 @@ Page({
   },
   onDestroy() {
     if (player) {
-      player.stop()
+      player.stop();
     }
     logger.debug("page onDestroy invoked");
   },
