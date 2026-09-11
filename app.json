@@ -13,8 +13,7 @@
     "description": "Tuning fork 440Hz sound"
   },
   "permissions": [
-    "data:os.device.info",
-    "device:os.local_storage"
+    "data:os.device.info"
   ],
   "runtime": {
     "apiVersion": {

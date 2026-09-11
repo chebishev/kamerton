@@ -9,7 +9,6 @@ let player = null;
 
 Page({
   onInit() {
-    logger.debug("index page onInit invoked");
   },
   build() {
     // Show the background image
@@ -23,14 +22,12 @@ Page({
       if (result) {
         // start() method changes the status code to 2
         player.start();
-        logger.info("Sound started")
       } else {
         logger.error("failed to prepare audio");
       }
     });
     player.addEventListener(player.event.COMPLETE, () => {
       player.stop();
-      logger.info("Sound stopped after event COMLETE")
     });
     // media file source (duration 1:20 min)
     player.setSource(player.source.FILE, { file: "assets://raw/media/A-440Hz.mp3" })
@@ -40,10 +37,8 @@ Page({
       if (player.getStatus() == 1) {
         // status code 1 means Stopped
         player.prepare();
-        logger.info("Sound started on tap")
       } else {
-        player.stop()
-        logger.info("Sound stopped on tap")
+        player.stop();
       }
     });
     // create and show clickable info image leading to about.js
@@ -57,8 +52,6 @@ Page({
   onDestroy() {
     if (player) {
       player.stop();
-      logger.info("Sound stopped on Destroy")
     }
-    logger.debug("index page onDestroy invoked");
   },
 });
