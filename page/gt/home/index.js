@@ -16,7 +16,7 @@ Page({
     const background = createWidget(widget.IMG, BACKGROUND);
     // Create audio player
     player = create(id.PLAYER);
-    // Set the volume 1-100, default -1
+    // Set the volume 1-100, default -1. It may be quieter on devices with one speaker
     player.setVolume(25);
     // Listen for prepare() function's status: boolean
     player.addEventListener(player.event.PREPARE, (result) => {

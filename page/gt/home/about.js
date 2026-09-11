@@ -1,12 +1,12 @@
 import { createWidget, widget } from "@zos/ui";
 import { log as Logger } from "@zos/utils";
-import { APP_INFO, CREATOR_INFO, QRCODE } from "zosLoader:./about.[pf].layout.js";
+import { APP_INFO, CREATOR_INFO, QRCODE } from "zosLoader:./about.page.[pf].layout.js";
 
 const logger = Logger.getLogger("kamerton");
 
 Page({
   onInit() {
-    logger.info("about page onInit invoked");
+    logger.debug("about page onInit invoked");
   },
 
   build() {
@@ -19,6 +19,6 @@ Page({
   },
 
   onDestroy() {
-    logger.info("about page onDestroy invoked");
+    logger.debug("about page onDestroy invoked");
   },
 });
