@@ -9,7 +9,7 @@ let player = null;
 
 Page({
   onInit() {
-    logger.debug("index page onInitinvoked");
+    logger.debug("index page onInit invoked");
   },
   build() {
     // Show the background image
