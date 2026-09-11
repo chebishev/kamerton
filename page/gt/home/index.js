@@ -2,7 +2,7 @@ import { createWidget, widget, event } from "@zos/ui";
 import { push } from "@zos/router";
 import { create, id } from '@zos/media';
 import { log as Logger } from "@zos/utils";
-import { BACKGROUND, INFO_ICON } from "zosLoader:./index.[pf].layout.js";
+import { BACKGROUND, BACKGROUND_PRESSED, INFO_ICON } from "zosLoader:./index.[pf].layout.js";
 
 const logger = Logger.getLogger("kamerton");
 let player = null;
@@ -22,6 +22,7 @@ Page({
       if (result) {
         // start() method changes the status code to 2
         player.start();
+        // change the background to more active one
       } else {
         logger.error("failed to prepare audio");
       }
@@ -37,8 +38,12 @@ Page({
       if (player.getStatus() == 1) {
         // status code 1 means Stopped
         player.prepare();
+        // change the background to more active one
+        background.src = BACKGROUND_PRESSED;
       } else {
         player.stop();
+        // reset the background to default
+        background.src = BACKGROUND.src;
       }
     });
     // create and show clickable info image leading to about.js
