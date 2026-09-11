@@ -2,50 +2,43 @@ import { createWidget, widget, event } from "@zos/ui";
 import { push } from "@zos/router";
 import { create, id } from '@zos/media';
 import { log as Logger } from "@zos/utils";
-import { BACKGROUND, INFO_ICON } from "zosLoader:./index.page.[pf].layout.js";
+import { BACKGROUND, INFO_ICON } from "zosLoader:./index.[pf].layout.js";
 
 const logger = Logger.getLogger("kamerton");
-// flag for start/stop the playing on tap
-let soundPlaying = false;
 let player = null;
 
 Page({
   onInit() {
-    logger.debug("page onInit invoked");
   },
   build() {
-    
-    logger.debug("page build invoked");
     // Show the background image
     const background = createWidget(widget.IMG, BACKGROUND);
     // Create audio player
     player = create(id.PLAYER);
+    // Set the volume 1-100, default -1
+    player.setVolume(25);
     // Listen for prepare() function
     player.addEventListener(player.event.PREPARE, (result) => {
       if (result) {
+        // start() method changes the status code to 2
         player.start();
       } else {
-        soundPlaying = false;
         logger.error("failed to prepare audio");
       }
     });
     player.addEventListener(player.event.COMPLETE, () => {
       player.stop();
-      soundPlaying = false;
     });
     // media file source (duration 1:20 min)
     player.setSource(player.source.FILE, { file: "assets://raw/media/A-440Hz.mp3" })
 
     // tap the background to start/stop sound playing
     background.addEventListener(event.CLICK_UP, () => {
-      if (!soundPlaying) {
+      if (player.getStatus() == 1) {
+        // status code 1 means Stopped
         player.prepare();
-        soundPlaying = true;
-        logger.info("playing sound....");
       } else {
         player.stop()
-        soundPlaying = false;
-        logger.info("sound stopped");
       }
     });
     // create and show clickable info image leading to about.js

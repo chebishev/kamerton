@@ -1,6 +1,6 @@
 {
   "name": "kamerton",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tuning fork 440Hz sound",
   "main": "app.js",
   "scripts": {
