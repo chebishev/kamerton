@@ -1,4 +1,4 @@
-import { createWidget, widget, event } from "@zos/ui";
+import { createWidget, widget, event, prop } from "@zos/ui";
 import { push } from "@zos/router";
 import { create, id } from '@zos/media';
 import { log as Logger } from "@zos/utils";
@@ -34,16 +34,20 @@ Page({
     player.setSource(player.source.FILE, { file: "assets://raw/media/A-440Hz.mp3" })
 
     // tap the background to start/stop sound playing
-    background.addEventListener(event.CLICK_UP, () => {
+    background.addEventListener(event.CLICK_DOWN, () => {
       if (player.getStatus() == 1) {
         // status code 1 means Stopped
         player.prepare();
         // change the background to more active one
-        background.src = BACKGROUND_PRESSED;
+        background.setProperty(prop.MORE, {
+          src: BACKGROUND_PRESSED,
+        });
       } else {
         player.stop();
         // reset the background to default
-        background.src = BACKGROUND.src;
+        background.setProperty(prop.MORE, {
+          src: BACKGROUND.src,
+        });
       }
     });
     // create and show clickable info image leading to about.js
