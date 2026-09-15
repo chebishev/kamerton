@@ -1,7 +1,7 @@
 import { getDeviceInfo } from "@zos/device";
 import { px } from "@zos/utils";
 
-export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();
+export const { width: DEVICE_WIDTH } = getDeviceInfo();
 const infoPosition = DEVICE_WIDTH / 2 - 20
 
 export const BACKGROUND_PRESSED = "pressed.png"

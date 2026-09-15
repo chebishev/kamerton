@@ -5,19 +5,19 @@ import { setStatusBarVisible } from "@zos/ui";
 // Hide the status bar
 setStatusBarVisible(false)
 
-export const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = getDeviceInfo();
+export const { width: DEVICE_WIDTH } = getDeviceInfo();
 // Get the center of the screen
-const infoPosition = DEVICE_HEIGHT / 2 - 5;
+const infoPosition = DEVICE_WIDTH - 20;
 
 export const BACKGROUND_PRESSED = "pressed.png"
 export const BACKGROUND = {
   src: "static.png",
-  x: px(-20),
-  y: px(15),
+  x: px(10),
+  y: px(10),
 };
 
 export const INFO_ICON = {
   src: "info.png",
   x: px(infoPosition),
-  y: px(452),
+  y: px(6),
 };
