@@ -31,6 +31,9 @@ Plays real, progressively fading out "A" note 440Hz
     └── gt.s/         # icons and pictures for Square devices
     └── raw/media     # sound files (in this case - sound file)
 ```
+## Screenshots
+[IMG](./screenshots/playing.png)
+[IMG](./screenshots/about.png)
 
 ## License
 [MIT](LICENSE)
