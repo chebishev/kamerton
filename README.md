@@ -32,8 +32,8 @@ Plays real, progressively fading out "A" note 440Hz
     └── raw/media     # sound files (in this case - sound file)
 ```
 ## Screenshots
-[IMG](./screenshots/playing.png)
-[IMG](./screenshots/about.png)
+![Image](./screenshots/playing.png)
+![Image](./screenshots/about.png)
 
 ## License
 [MIT](LICENSE)
