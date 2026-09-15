@@ -21,23 +21,23 @@ export const CREATOR_INFO = {
     x: px(96),
     y: px(160),
     w: px(288),
-    h: px(46),
+    h: px(80),
     color: 0xffffff,
     text_size: px(19),
     align_h: align.CENTER_H,
     align_v: align.CENTER_V,
     text_style: text_style.WRAP,
-    text: getText("creator")
+    text: `${getText("creator")}\n${getText("email")}`
 };
 
 export const QRCODE = {
       content: 'https://chebishev.github.io/',
       x: px(140),
-      y: px(250),
+      y: px(290),
       w: px(200),
       h: px(200),
       bg_x: px(120),
-      bg_y: px(230),
+      bg_y: px(270),
       bg_w: px(240),
       bg_h: px(240)
 }
