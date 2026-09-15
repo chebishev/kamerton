@@ -31,13 +31,13 @@ export const CREATOR_INFO = {
 };
 
 export const QRCODE = {
-      content: 'https://chebishev.github.io/',
-      x: px(140),
-      y: px(290),
-      w: px(200),
-      h: px(200),
-      bg_x: px(120),
-      bg_y: px(270),
-      bg_w: px(240),
-      bg_h: px(240)
+    content: 'https://chebishev.github.io/',
+    x: px(140),
+    y: px(290),
+    w: px(200),
+    h: px(200),
+    bg_x: px(120),
+    bg_y: px(270),
+    bg_w: px(240),
+    bg_h: px(240)
 }

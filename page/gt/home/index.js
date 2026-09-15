@@ -22,7 +22,6 @@ Page({
       if (result) {
         // start() method changes the status code to 2
         player.start();
-        // change the background to more active one
       } else {
         logger.error("failed to prepare audio");
       }

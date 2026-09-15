@@ -6,7 +6,7 @@ import { setStatusBarVisible } from "@zos/ui";
 setStatusBarVisible(false)
 
 export const { width: DEVICE_WIDTH } = getDeviceInfo();
-// Get the center of the screen
+// info icon positioning in the right corner
 const infoPosition = DEVICE_WIDTH - 20;
 
 export const BACKGROUND_PRESSED = "pressed.png"
