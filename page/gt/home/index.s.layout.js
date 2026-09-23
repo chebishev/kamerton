@@ -7,7 +7,7 @@ setStatusBarVisible(false)
 
 export const { width: DEVICE_WIDTH } = getDeviceInfo();
 // info icon positioning in the right corner
-const infoPosition = DEVICE_WIDTH - 20;
+const infoPosition = DEVICE_WIDTH - 40;
 
 export const BACKGROUND_PRESSED = "pressed.png"
 export const BACKGROUND = {
