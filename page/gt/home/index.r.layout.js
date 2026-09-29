@@ -1,19 +1,6 @@
-import { getDeviceInfo } from "@zos/device";
-import { px } from "@zos/utils";
-
-export const { width: DEVICE_WIDTH } = getDeviceInfo();
-// get the center of the screen and half of the info icon width center it as well
-const infoPosition = DEVICE_WIDTH / 2 - 20
-
-export const BACKGROUND_PRESSED = "pressed.png"
-export const BACKGROUND = {
-  src: "static.png",
-  x: px(-24),
-  y: px(-22),
-};
-
-export const INFO_ICON = {
-  src: "info.png",
-  x: px(infoPosition),
-  y: px(6),
-}
+export {
+  DEVICE_WIDTH,
+  BACKGROUND_PRESSED,
+  BACKGROUND,
+  INFO_ICON,
+} from "./index.layout";

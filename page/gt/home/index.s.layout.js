@@ -1,23 +1,24 @@
-import { getDeviceInfo } from "@zos/device";
-import { px } from "@zos/utils";
 import { setStatusBarVisible } from "@zos/ui";
+import { px } from "@zos/utils";
 
-// Hide the status bar
-setStatusBarVisible(false)
+import {
+  DEVICE_WIDTH,
+  BACKGROUND_PRESSED,
+  BACKGROUND as BASE_BACKGROUND,
+  INFO_ICON as BASE_INFO_ICON,
+} from "./index.layout";
 
-export const { width: DEVICE_WIDTH } = getDeviceInfo();
-// info icon positioning in the right corner
-const infoPosition = DEVICE_WIDTH - 40;
+setStatusBarVisible(false);
 
-export const BACKGROUND_PRESSED = "pressed.png"
+export { DEVICE_WIDTH, BACKGROUND_PRESSED };
+
 export const BACKGROUND = {
-  src: "static.png",
+  ...BASE_BACKGROUND,
   x: px(10),
   y: px(10),
 };
 
 export const INFO_ICON = {
-  src: "info.png",
-  x: px(infoPosition),
-  y: px(6),
+  ...BASE_INFO_ICON,
+  x: px(DEVICE_WIDTH - 40),
 };
