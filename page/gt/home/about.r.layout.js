@@ -29,7 +29,7 @@ export const CREATOR_INFO = {
 };
 
 export const QRCODE = {
-    content: 'https://chebishev.github.io/',
+    content: `${getText("link")}`,
     x: px(140),
     y: px(210),
     w: px(200),
