@@ -6,6 +6,8 @@ import {
   BACKGROUND_PRESSED,
   BACKGROUND as BASE_BACKGROUND,
   INFO_ICON as BASE_INFO_ICON,
+  VOLUME_UP_ICON as BASE_VOLUME_UP_ICON,
+  VOLUME_DOWN_ICON as BASE_VOLUME_DOWN_ICON,
 } from "./index.layout";
 
 setStatusBarVisible(false);

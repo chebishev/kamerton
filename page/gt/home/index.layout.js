@@ -19,3 +19,15 @@ export const INFO_ICON = {
   x: px(infoPosition),
   y: px(6),
 };
+
+export const VOLUME_UP_ICON = {
+  src: "vol_up.png",
+  x: px(DEVICE_WIDTH / 1.4),
+  y: px(DEVICE_WIDTH / 1.5)
+}
+
+export const VOLUME_DOWN_ICON = {
+  src: "vol_down.png",
+  x: px(DEVICE_WIDTH / 1.4),
+  y: px(DEVICE_WIDTH / 1.3)
+}

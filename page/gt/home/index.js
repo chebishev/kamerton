@@ -1,13 +1,64 @@
-import hmUI, { createWidget, widget, event, prop } from "@zos/ui";
+import { createWidget, deleteWidget, widget, event, prop } from "@zos/ui";
 import { push } from "@zos/router";
 import { create, id } from '@zos/media';
+import { LocalStorage } from "@zos/storage";
 import { log as Logger } from "@zos/utils";
-import { BACKGROUND, BACKGROUND_PRESSED, INFO_ICON } from "zosLoader:./index.[pf].layout.js";
+import { BACKGROUND, BACKGROUND_PRESSED, INFO_ICON, VOLUME_UP_ICON, VOLUME_DOWN_ICON } from "zosLoader:./index.[pf].layout.js";
 
 const logger = Logger.getLogger("kamerton");
+const DEFAULT_VOLUME = 25;
+const VOLUME_STEP = 10;
+const VOLUME_KEY = "kamerton_volume";
+const VOLUME_ANGLE_FACTOR = 3.6;
 let player = null;
 
+const localStorage = new LocalStorage();
+
 Page({
+  state: {
+    previousVolume: null,
+    kamertonVolume: DEFAULT_VOLUME,
+    arcProgress: null,
+  },
+  changeVolume(step) {
+    const volume = Math.max(
+      0,
+      Math.min(100, this.state.kamertonVolume + step)
+    );
+
+    this.state.kamertonVolume = volume;
+
+    player.setVolume(volume);
+
+    localStorage.setItem(VOLUME_KEY, volume);
+
+    this.updateVolumeArc();
+  },
+
+  updateVolumeArc() {
+  const angle = Math.max(
+    0,
+    Math.min(360, this.state.kamertonVolume * VOLUME_ANGLE_FACTOR)
+  );
+
+  // Remove the previous ARC widget
+  if (this.state.arcProgress) {
+    deleteWidget(this.state.arcProgress);
+    this.state.arcProgress = null;
+  }
+
+  // Create a new ARC widget
+  this.state.arcProgress = createWidget(widget.ARC_PROGRESS, {
+    center_x: 480 / 2,
+    center_y: 480 / 2,
+    radius: 20,
+    start_angle: 0,
+    end_angle: angle,
+    color: 0xffffff,
+    line_width: 3,
+    level: 100,
+  });
+},
   onInit() {
   },
   build() {
@@ -15,8 +66,15 @@ Page({
     const background = createWidget(widget.IMG, BACKGROUND);
     // Create audio player
     player = create(id.PLAYER);
+    // save current device volume
+    this.state.previousVolume = player.getVolume();
+    // restore preferred volume from local storage (if any)
+    this.state.kamertonVolume = localStorage.getItem(
+      VOLUME_KEY,
+      DEFAULT_VOLUME
+    );
     // Set the volume 1-100, default -1. It may be quieter on devices with one speaker
-    player.setVolume(25);
+    player.setVolume(this.state.kamertonVolume);
 
     // Listen for prepare() function's status: boolean
     player.addEventListener(player.event.PREPARE, (result) => {
@@ -51,17 +109,17 @@ Page({
       }
     });
     // create and show clickable info image leading to about.js
-    const arcProgress = hmUI.createWidget(hmUI.widget.ARC_PROGRESS)
-    arcProgress.setProperty(hmUI.prop.MORE, {
-      center_x: 240,
-      center_y: 240,
-      radius: 80,
-      start_angle: 0,
-      end_angle: volume * 3.6,
-      color: 0x0c86d1,
-      line_width: 6,
-      level: 100,
+    const volUp = createWidget(widget.IMG, VOLUME_UP_ICON);
+    volUp.addEventListener(event.CLICK_UP, () => {
+      this.changeVolume(VOLUME_STEP)
+    })
+    const volDown = createWidget(widget.IMG, VOLUME_DOWN_ICON);
+
+    volDown.addEventListener(event.CLICK_UP, () => {
+      this.changeVolume(-VOLUME_STEP);
     });
+    
+    this.updateVolumeArc();
     const info = createWidget(widget.IMG, INFO_ICON);
     info.addEventListener(event.CLICK_UP, () => {
       push({
@@ -72,6 +130,16 @@ Page({
   onDestroy() {
     if (player) {
       player.stop();
+
+      const previousVolume = this.state.previousVolume;
+
+      if (
+        previousVolume !== null &&
+        previousVolume >= 0 &&
+        previousVolume <= 100
+      ) {
+        player.setVolume(previousVolume);
+      }
     }
   },
 });

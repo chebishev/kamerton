@@ -3,4 +3,6 @@ export {
   BACKGROUND_PRESSED,
   BACKGROUND,
   INFO_ICON,
+  VOLUME_UP_ICON,
+  VOLUME_DOWN_ICON,
 } from "./index.layout";
