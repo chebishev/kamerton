@@ -1,4 +1,4 @@
-import { createWidget, widget, event, prop } from "@zos/ui";
+import hmUI, { createWidget, widget, event, prop } from "@zos/ui";
 import { push } from "@zos/router";
 import { create, id } from '@zos/media';
 import { log as Logger } from "@zos/utils";
@@ -17,6 +17,7 @@ Page({
     player = create(id.PLAYER);
     // Set the volume 1-100, default -1. It may be quieter on devices with one speaker
     player.setVolume(25);
+
     // Listen for prepare() function's status: boolean
     player.addEventListener(player.event.PREPARE, (result) => {
       if (result) {
@@ -50,6 +51,17 @@ Page({
       }
     });
     // create and show clickable info image leading to about.js
+    const arcProgress = hmUI.createWidget(hmUI.widget.ARC_PROGRESS)
+    arcProgress.setProperty(hmUI.prop.MORE, {
+      center_x: 240,
+      center_y: 240,
+      radius: 80,
+      start_angle: 0,
+      end_angle: volume * 3.6,
+      color: 0x0c86d1,
+      line_width: 6,
+      level: 100,
+    });
     const info = createWidget(widget.IMG, INFO_ICON);
     info.addEventListener(event.CLICK_UP, () => {
       push({
