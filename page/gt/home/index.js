@@ -1,16 +1,21 @@
-import { createWidget, deleteWidget, widget, event, prop } from "@zos/ui";
+import { createWidget, widget, event, prop, } from "@zos/ui";
 import { push } from "@zos/router";
 import { create, id } from '@zos/media';
 import { LocalStorage } from "@zos/storage";
 import { log as Logger } from "@zos/utils";
-import { BACKGROUND, BACKGROUND_PRESSED, INFO_ICON, VOLUME_UP_ICON, VOLUME_DOWN_ICON } from "zosLoader:./index.[pf].layout.js";
+import {
+  BACKGROUND,
+  BACKGROUND_PRESSED,
+  INFO_ICON, VOLUME_UP,
+  VOLUME_DOWN, VOLUME_VALUE, VOLUME_GROUP,
+} from "zosLoader:./index.[pf].layout.js";
 
 const logger = Logger.getLogger("kamerton");
 const DEFAULT_VOLUME = 25;
 const VOLUME_STEP = 10;
 const VOLUME_KEY = "kamerton_volume";
-const VOLUME_ANGLE_FACTOR = 3.6;
 let player = null;
+let imgAnimation = null;
 
 const localStorage = new LocalStorage();
 
@@ -18,7 +23,7 @@ Page({
   state: {
     previousVolume: null,
     kamertonVolume: DEFAULT_VOLUME,
-    arcProgress: null,
+    volumeText: null,
   },
   changeVolume(step) {
     const volume = Math.max(
@@ -29,36 +34,10 @@ Page({
     this.state.kamertonVolume = volume;
 
     player.setVolume(volume);
-
     localStorage.setItem(VOLUME_KEY, volume);
 
-    this.updateVolumeArc();
+    this.state.volumeText.setProperty(prop.TEXT, `${volume}%`);
   },
-
-  updateVolumeArc() {
-  const angle = Math.max(
-    0,
-    Math.min(360, this.state.kamertonVolume * VOLUME_ANGLE_FACTOR)
-  );
-
-  // Remove the previous ARC widget
-  if (this.state.arcProgress) {
-    deleteWidget(this.state.arcProgress);
-    this.state.arcProgress = null;
-  }
-
-  // Create a new ARC widget
-  this.state.arcProgress = createWidget(widget.ARC_PROGRESS, {
-    center_x: 480 / 2,
-    center_y: 480 / 2,
-    radius: 20,
-    start_angle: 0,
-    end_angle: angle,
-    color: 0xffffff,
-    line_width: 3,
-    level: 100,
-  });
-},
   onInit() {
   },
   build() {
@@ -90,9 +69,8 @@ Page({
     });
     // media file source (duration 1:20 min)
     player.setSource(player.source.FILE, { file: "assets://raw/media/A-440Hz.mp3" })
-
     // tap the background to start/stop sound playing
-    background.addEventListener(event.CLICK_DOWN, () => {
+    background.addEventListener(event.CLICK_UP, () => {
       if (player.getStatus() == 1) {
         // status code 1 means Stopped
         player.prepare();
@@ -108,18 +86,24 @@ Page({
         });
       }
     });
-    // create and show clickable info image leading to about.js
-    const volUp = createWidget(widget.IMG, VOLUME_UP_ICON);
-    volUp.addEventListener(event.CLICK_UP, () => {
-      this.changeVolume(VOLUME_STEP)
-    })
-    const volDown = createWidget(widget.IMG, VOLUME_DOWN_ICON);
 
+    const volumeGroup = createWidget(widget.GROUP, VOLUME_GROUP);
+
+    const volUp = volumeGroup.createWidget(widget.TEXT, VOLUME_UP);
+    volUp.addEventListener(event.CLICK_UP, () => {
+      this.changeVolume(VOLUME_STEP);
+    });
+
+    this.state.volumeText = volumeGroup.createWidget(widget.TEXT, {
+      ...VOLUME_VALUE,
+      text: `${this.state.kamertonVolume}%`,
+    });
+
+    const volDown = volumeGroup.createWidget(widget.TEXT, VOLUME_DOWN);
     volDown.addEventListener(event.CLICK_UP, () => {
       this.changeVolume(-VOLUME_STEP);
     });
-    
-    this.updateVolumeArc();
+    // create and show clickable info image leading to about.js
     const info = createWidget(widget.IMG, INFO_ICON);
     info.addEventListener(event.CLICK_UP, () => {
       push({

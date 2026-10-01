@@ -8,7 +8,8 @@ Plays real, progressively fading out "A" note 440Hz
 - Tap to start
 (starts A-440Hz.mp3 tune)
 - Tap to stop
-- Tap on Info icon to visit About page
+- Set your preferred volume. It will be saved without affecting your system volume
+- Tap on Info icon to visit the About page
 
 ## Supported devices
 - Compatible with Api level 3.0+ Round and Square devices
