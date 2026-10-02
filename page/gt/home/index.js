@@ -15,7 +15,6 @@ const DEFAULT_VOLUME = 25;
 const VOLUME_STEP = 10;
 const VOLUME_KEY = "kamerton_volume";
 let player = null;
-let imgAnimation = null;
 
 const localStorage = new LocalStorage();
 
