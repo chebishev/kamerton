@@ -1,4 +1,4 @@
-import { createWidget, widget, event, prop, } from "@zos/ui";
+import { createWidget, widget, event, prop } from "@zos/ui";
 import { push } from "@zos/router";
 import { create, id } from '@zos/media';
 import { LocalStorage } from "@zos/storage";
@@ -37,8 +37,6 @@ Page({
 
     this.state.volumeText.setProperty(prop.TEXT, `${volume}%`);
   },
-  onInit() {
-  },
   build() {
     // Show the background image
     const background = createWidget(widget.IMG, BACKGROUND);
@@ -65,6 +63,9 @@ Page({
     });
     player.addEventListener(player.event.COMPLETE, () => {
       player.stop();
+      background.setProperty(prop.MORE, {
+        src: BACKGROUND.src,
+      });
     });
     // media file source (duration 1:20 min)
     player.setSource(player.source.FILE, { file: "assets://raw/media/A-440Hz.mp3" })
@@ -86,6 +87,7 @@ Page({
       }
     });
 
+    // create group space for +/- and volume value TEXT widgets
     const volumeGroup = createWidget(widget.GROUP, VOLUME_GROUP);
 
     const volUp = volumeGroup.createWidget(widget.TEXT, VOLUME_UP);
