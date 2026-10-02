@@ -11,7 +11,7 @@ import {
 } from "zosLoader:./index.[pf].layout.js";
 
 const logger = Logger.getLogger("kamerton");
-const DEFAULT_VOLUME = 25;
+const DEFAULT_VOLUME = 30;
 const VOLUME_STEP = 10;
 const VOLUME_KEY = "kamerton_volume";
 let player = null;
