@@ -14,10 +14,12 @@ Plays real, progressively fading out "A" note 440Hz
 ## Supported devices
 - Compatible with Api level 3.0+ Round and Square devices
 - Tested on real devices: Balance and Balance 2 (Round(480x480)) 
-- Tested on emulators: Balance, Balance 2 (Round(480x480)), GTS 4 (Square(390x450)), Bip Max (Square(432×514))
+- Tested on emulators: Balance, Balance 2 (Round(480x480)), GTS 4 and Active 2 Square (Square(390x450)), Bip Max (Square(432×514))
 
 ## Audio
 - Sound: Tuning Fork 440 Hz, Resonance Box (Long-decay, Tuning-fork, 440hz sound effect. Free for use.)
+- Duration: 1:20 minutes
+- Compression: 64kbps, 44.100 kHz, Mono
 - Artist: jmuehlhans
 - WebSite: https://pixabay.com/sound-effects/film-special-effects-tuning-fork-440-hz-resonance-box-22406/
 
@@ -30,7 +32,7 @@ Plays real, progressively fading out "A" note 440Hz
 ├── assets/           # Media files
     └── gt.r/         # icons and pictures for Round devices
     └── gt.s/         # icons and pictures for Square devices
-    └── raw/media     # sound files (in this case - sound file)
+    └── raw/media     # other file assets (in this case - the sound file)
 ```
 ## Screenshots
 ![Image](./screenshots/playing.png)
